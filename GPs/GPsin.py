@@ -37,11 +37,14 @@ def plot_gp(mu, cov, X, X_train=None, Y_train=None, samples=[]):
 
 X = np.arange(-2,8,0.01).reshape(-1,1)
 
-X_train = np.array([-1,-.26,0.32,1.2,2.11,3,5]).reshape(-1,1)
-Y_train = np.sin(X_train * 2*np.pi) + X_train
+#X_train = np.array([-1,-.26,0.32,1.2,2.11,3,5]).reshape(-1,1)
+#Y_train = np.sin(X_train * 2*np.pi) + X_train
+
+X_train = []
+Y_train = []
 
 mu_s, cov_s = posterior_predictive(X, X_train, Y_train)
 
 samples = np.random.multivariate_normal(mu_s.ravel(), cov_s, 3, tol=1e-6)
 
-plot_gp(mu_s, cov_s, X, X_train=X_train, Y_train=Y_train)
+plot_gp(mu_s, cov_s, X, X_train=X_train, Y_train=Y_train, samples=samples)
